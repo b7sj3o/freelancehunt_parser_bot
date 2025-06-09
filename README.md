@@ -32,10 +32,10 @@ ADMIN_PASSWORD=your_password
     </code></pre>
   </li>
   <li>Встановіть залежності:
-    <pre><code>pip install -r requirements.txt</code></pre>
+    <pre><code>poetry install</code></pre>
   </li>
   <li>Запустіть бота:
-    <pre><code>python bot.py</code></pre>
+    <pre><code>python main.py</code></pre>
   </li>
 </ol>
 
