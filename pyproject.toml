@@ -18,8 +18,14 @@ cloudscraper = "^1.2.71"
 requests = "^2.32.4"
 python-dotenv = "^1.1.0"
 watchdog = "^6.0.0"
+flask = "^3.1.1"
+flask-admin = "^1.6.1"
+gunicorn = "^23.0.0"
+flask-sqlalchemy = "^3.1.1"
+flask-login = "^0.6.3"
+psycopg2 = "^2.9.10"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 
 
 [build-system]

@@ -23,6 +23,7 @@ def get_page(url, max_retries=10):
         response = scraper.get(url)
         if "<title>Just a moment" not in response.text:
             return response.text
+        # TODO: change to async
         time.sleep(.5)
     raise Exception("😡 Не вдалося обійти Cloudflare після кількох спроб")
 

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Авторизація</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Авторизація</h2>
+        {% if error %}
+            <div style="color:red;">{{ error }}</div>
+        {% endif %}
+        <form method="post">
+            <input type="password" name="password" placeholder="Пароль" required autofocus>
+            <button type="submit" class="btn btn-success">Увійти</button>
+        </form>
+    </div>
+</body>
+</html>
