@@ -26,9 +26,19 @@
   <li>Склонуйте репозиторій</li>
   <li>Створіть <code>.env</code> файл:
     <pre><code>
-BOT_TOKEN=your_telegram_token
-DATABASE_URL=sqlite+aiosqlite:///db.sqlite3
-ADMIN_PASSWORD=your_password
+BOT_TOKEN=
+
+ADMIN_PASSWORD=
+ADMIN_HOST=
+ADMIN_PORT=
+SECRET_KEY=
+DEBUG=
+
+DB_HOST=
+DB_PORT=
+DB_NAME=
+DB_USER=
+DB_PASSWORD=
     </code></pre>
   </li>
   <li>Встановіть залежності:
