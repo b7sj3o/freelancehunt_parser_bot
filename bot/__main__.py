@@ -10,14 +10,17 @@ from bot.handlers import (
     filters_router,
 )
 from bot.db.models import create_db
-from bot.core import logger
 
 async def main():
     bot = Bot(settings.BOT_TOKEN)
     dp = Dispatcher()
 
     dp.include_routers(
-        start_router, manage_categories_router, text_handlers_router, manage_data_router, filters_router
+        start_router,
+        manage_categories_router,
+        text_handlers_router,
+        manage_data_router,
+        filters_router,
     )
 
     await create_db()

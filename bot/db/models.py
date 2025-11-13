@@ -2,13 +2,8 @@ from typing import List
 
 from sqlalchemy import BigInteger, JSON, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from sqlalchemy.ext.asyncio import AsyncAttrs
 
-from bot.db.session import engine
-
-
-class Base(AsyncAttrs, DeclarativeBase):
-    pass
+from bot.db.session import engine, Base
 
 
 class UserCategoryItem(Base):
@@ -43,7 +38,7 @@ class User(Base):
     )
 
     def __str__(self):
-        return f"<User id={self.id} user_id={self.user_id} is_superuser={self.is_superuser}, is_active={self.is_active}>"
+        return f"User(id={self.id}, user_id={self.user_id}, is_superuser={self.is_superuser}, is_active={self.is_active})"
 
 
 class Category(Base):
@@ -57,7 +52,7 @@ class Category(Base):
     )
 
     def __str__(self):
-        return f"<Category id={self.id} name={self.name}>"
+        return f"Category(id={self.id}, name={self.name})"
 
 
 class CategoryItem(Base):
@@ -77,7 +72,7 @@ class CategoryItem(Base):
     )
 
     def __str__(self):
-        return f"<CategoryItem id={self.id} name={self.name} category_id={self.category_id}>"
+        return f"CategoryItem(id={self.id}, name={self.name}, category_id={self.category_id})"
 
 
 async def create_db():

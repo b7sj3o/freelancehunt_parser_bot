@@ -43,7 +43,7 @@ async def update_cost_filter(message: Message, state: FSMContext):
     
     await message.answer(
         f"Поточні фільтри ціни:\nМінімальна ціна: {min_cost} грн\nМаксимальна ціна: {max_cost} грн\n\n"
-        "Введіть нові значення або надішліть '-' для скасування."
+        "Введіть мінімальну ціну або надішліть '-' для скасування."
     )
     await state.set_state(MinMaxCostState.min_cost)
     
@@ -63,7 +63,7 @@ async def set_min_cost(message: Message, state: FSMContext):
 
     await state.update_data(min_cost=min_cost)
     await state.set_state(MinMaxCostState.max_cost)
-    await message.answer("Тепер напишіть максимальну ціну проекту:")
+    await message.answer("Тепер напишіть максимальну ціну проекту або надішліть '-' для скасування:")
 
 
 @router.message(MinMaxCostState.max_cost)

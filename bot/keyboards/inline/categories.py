@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 from aiogram.types import InlineKeyboardButton
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
@@ -49,12 +49,27 @@ async def inline_category_items_delete(category_items: List[CategoryItem]):
 
     return builder.as_markup()
 
-async def update_categories():
+async def update_categories(selected_items: Optional[List[Dict[str, Any]]] = None):
     categories = await rq.categories.get_categories(with_children=True)
     builder = InlineKeyboardBuilder()
 
+    selected_category_ids = set()
+
+    if selected_items:
+        for item in selected_items:
+            if not isinstance(item, dict):
+                continue
+            category_id = item.get("category_id")
+            if category_id is None:
+                continue
+            try:
+                selected_category_ids.add(int(category_id))
+            except (TypeError, ValueError):
+                continue
+
     for category in categories:
-        builder.add(InlineKeyboardButton(text=category.name, callback_data=f"update_category:{category.id}"))
+        prefix = "✅ " if category.id in selected_category_ids else ""
+        builder.add(InlineKeyboardButton(text=f"{prefix}{category.name}", callback_data=f"update_category:{category.id}"))
 
     if len(categories) > 7:
         builder.adjust(2)
@@ -69,7 +84,8 @@ async def update_categories():
 async def update_category_items(category_items: List[Tuple[CategoryItem, bool]]):
     builder = InlineKeyboardBuilder()
     for item, is_selected in category_items:
-        builder.add(InlineKeyboardButton(text=f"{item.name} {"✅" if is_selected else ""}", callback_data=f"update_category_item:{item.id}"))
+        prefix = "✅ " if is_selected else ""
+        builder.add(InlineKeyboardButton(text=f"{prefix}{item.name}", callback_data=f"update_category_item:{item.id}"))
 
     if len(category_items) > 7:
         builder.adjust(2)
